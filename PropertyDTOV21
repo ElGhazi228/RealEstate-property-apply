@@ -1,0 +1,159 @@
+
+    
+    private int id;
+    private int landlord_id;
+    private int tenant_id;
+    boolean applied;
+    boolean starred;
+    private String name;
+    private String address;
+    private String city;
+    private String pictures;    
+    private float price;    
+    private String description;
+    private String location;
+    private int rooms;
+    private int bathrooms;
+
+    public PropertyDTOV2() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getTenant_id() {
+        return tenant_id;
+    }
+
+    public void setTenant_id(int tenant_id) {
+        this.tenant_id = tenant_id;
+    }
+
+    public boolean isApplied() {
+        return applied;
+    }
+
+    public void setApplied(boolean applied) {
+        this.applied = applied;
+    }
+
+    public boolean isStarred() {
+        return starred;
+    }
+
+    public void setStarred(boolean starred) {
+        this.starred = starred;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getLandlord_id() {
+        return landlord_id;
+    }
+
+    public void setLandlord_id(int landlord_id) {
+        this.landlord_id = landlord_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(String pictures) {
+        this.pictures = pictures;
+    }
+
+   
+    public float getPrice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public int getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(int rooms) {
+        this.rooms = rooms;
+    }
+
+    public int getBathrooms() {
+        return bathrooms;
+    }
+
+    public void setBathrooms(int bathrooms) {
+        this.bathrooms = bathrooms;
+    }
+
+    public PropertyDTOV2(int id, int landlord_id, int tenant_id, boolean applied, boolean starred, String name, String address, String city, String pictures, float price, String description, String location, int rooms, int bathrooms) {
+        this.id = id;
+        this.landlord_id = landlord_id;
+        this.tenant_id = tenant_id;
+        this.applied = applied;
+        this.starred = starred;
+        this.name = name;
+        this.address = address;
+        this.city = city;
+        this.pictures = pictures;
+        this.price = price;
+        this.description = description;
+        this.location = location;
+        this.rooms = rooms;
+        this.bathrooms = bathrooms;
+    }
+
+    @Override
+    public String toString() {
+        return "PropertyDTOV2{" + "id=" + id + ", landlord_id=" + landlord_id + ", tenant_id=" + tenant_id + ", applied=" + applied + ", starred=" + starred + ", name=" + name + ", address=" + address + ", city=" + city + ", pictures=" + pictures + ", price=" + price + ", description=" + description + ", location=" + location + ", rooms=" + rooms + ", bathrooms=" + bathrooms + '}';
+    }
+
+   
+  
+}
