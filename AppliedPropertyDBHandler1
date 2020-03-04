@@ -1,0 +1,266 @@
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public class AppliedPropertyDBHandler extends DB{
+     @Override
+    public void finalize() {
+        try {
+            super.finalize();
+        } catch (Throwable ex) {
+            Logger.getLogger(DB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+public ArrayList<AppliedPropertyDTO> getAllStaredProperties() {
+        ArrayList<AppliedPropertyDTO> array = null; //statement
+        AppliedPropertyDTO obj = null;
+        String query = "Select * from Applied_properties";
+        Statement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery(query);
+            if (rs != null) {
+                array = new ArrayList<AppliedPropertyDTO>();
+                while (rs.next()) {
+
+                    obj = new AppliedPropertyDTO();
+                     obj.setStudent_id(rs.getInt(1));
+                    obj.setProperty_id(rs.getInt(2));
+                   
+                    
+
+                    array.add(obj);
+
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AppliedPropertyDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AppliedPropertyDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (st != null) {
+                try {
+                    st.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AppliedPropertyDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        if(array.isEmpty())
+            return null;
+        return array;
+    }
+
+    public ArrayList<AppliedPropertyDTO> getAllStaredPropertiesByStudentId(int tenant_id) {
+        ArrayList<AppliedPropertyDTO> array = null; //statement
+        AppliedPropertyDTO obj = null;
+        String query = "Select * from Applied_properties where tenant_id=?";
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, tenant_id);
+            rs = pst.executeQuery();
+            if (rs != null) {
+                array = new ArrayList<AppliedPropertyDTO>();
+                while (rs.next()) {
+
+                    obj = new AppliedPropertyDTO();
+                    obj.setProperty_id(rs.getInt(1));
+                    obj.setTenant_id(rs.getInt(2));
+                    
+
+                    array.add(obj);
+
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AppliedPropertyDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AppliedPropertyDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AppliedPropertyDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        if(array.isEmpty())
+            return null;
+        return array;
+    }
+    
+    public ArrayList<AppliedPropertyDTO> getAllStaredPropertiesByProprtyId(int property_id) {
+        ArrayList<AppliedPropertyDTO> array = null; //statement
+        AppliedPropertyDTO obj = null;
+        String query = "Select * from Applied_properties where property_id=?";
+        PreparedStatement pst = null;
+        ResultSet rs = null;
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, property_id);
+            rs = pst.executeQuery();
+            if (rs != null) {
+                array = new ArrayList<AppliedPropertyDTO>();
+                while (rs.next()) {
+
+                    obj = new AppliedPropertyDTO();
+                    obj.setProperty_id(rs.getInt(1));
+                    obj.setTenant_id(rs.getInt(2));
+                    
+
+                    array.add(obj);
+
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AppliedPropertyDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AppliedPropertyDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+            if (pst != null) {
+                try {
+                    pst.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(AppliedPropertyDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        if(array.isEmpty())
+            return null;
+        return array;
+    }
+    
+    
+    public boolean insertAppliedProperty(AppliedPropertyDTO obj) {
+        int affectedRows = 0;
+        String query = "INSERT INTO `Applied_properties` (`tenant_id`, `property_id`) VALUES (?, ?)";
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1,obj.getTenant_id());
+            pst.setInt(2,obj.getProperty_id());
+            
+           
+            affectedRows = pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TenantDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return affectedRows > 0;
+    }
+//
+
+   
+
+    public boolean removeAppliedPropertyByTenantId(int tenant_id) {
+        if (tenant_id <= 0) {
+            return false;
+        }
+        int affectedRows = 0;
+        String query = "delete from `Applied_properties`  where tenant_id=?";
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, tenant_id);
+            affectedRows = pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TenantDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return affectedRows != 0;
+
+    }
+    
+    public boolean removeAppliedPropertyByPropertyId(int property_id) {
+        if (property_id <= 0) {
+            return false;
+        }
+        int affectedRows = 0;
+        String query = "delete from `Applied_properties`  where property_id=?";
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, property_id);
+            affectedRows = pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TenantDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return affectedRows != 0;
+
+    }
+    
+     public boolean removeAppliedPropertyByPropertyBothID(AppliedPropertyDTO obj) {
+        
+        int affectedRows = 0;
+        String query = "delete from `Applied_properties`  where property_id=? and tenant_id=?";
+        PreparedStatement pst = null;
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, obj.getProperty_id());
+            pst.setInt(2,obj.getTenant_id());
+            affectedRows = pst.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TenantDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return affectedRows != 0;
+
+    }
+    
+     public boolean isALreadyApplied(AppliedPropertyDTO obj) {
+        
+        int affectedRows = 0;
+        String query = "select * from `applied_properties`  where property_id=? and tenant_id=?";
+    
+        PreparedStatement pst = null;
+        ResultSet rst=null;
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setInt(1, obj.getProperty_id());
+            pst.setInt(2,obj.getTenant_id());
+                System.out.println(pst);
+            rst=pst.executeQuery();
+            if(rst!=null && rst.next())
+                affectedRows=1;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TenantDBHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return affectedRows != 0;
+
+    }
+    
+    
+}
