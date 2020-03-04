@@ -8,8 +8,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 
-
-
+                  <!--like feature-->
+                  <div class="pr-single-info">
+                                <%StarredPropertyDBHandler sdb = new StarredPropertyDBHandler(); %>
+                                <% if (sdb.isALreadyStarred(new StarredPropertyDTO(student_id, proObj.getId()))) {%>
+                                <a class="like-bitt add-to-favorite" onclick="likeProperty(this)" data-target-id="<%= proObj.getId()%>"  data-target-star="1" data-original-title="Add To Favorites"><i class="lni-heart-filled"></i></a>
+                                    <%} else {%>
+                                <a class="like-bitt add-to-favorite" onclick="likeProperty(this)" data-target-id="<%= proObj.getId()%>"  data-target-star="0" data-original-title="Add To Favorites"><i class="lni-heart"></i></a>
+                                    <%}%>
+                            </div>
 
 
 
