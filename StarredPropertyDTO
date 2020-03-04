@@ -1,0 +1,34 @@
+public class StarredPropertyDTO {
+    private int tenant_id;
+    private int property_id;
+
+    public StarredPropertyDTO() {
+    }
+
+    public StarredPropertyDTO(int tenant_id, int property_id) {
+        this.tenant_id = tenant_id;
+        this.property_id = property_id;
+    }
+
+    public int getTenant_id() {
+        return tenant_id;
+    }
+
+    public void setTenant_id(int tenant_id) {
+        this.tenant_id = tenant_id;
+    }
+
+    public int getProperty_id() {
+        return property_id;
+    }
+
+    public void setProperty_id(int property_id) {
+        this.property_id = property_id;
+    }
+
+    @Override
+    public String toString() {
+        return "StarredPropertyDTO{" + "tenant_id=" + tenant_id + ", property_id=" + property_id + '}';
+    }
+    
+}
