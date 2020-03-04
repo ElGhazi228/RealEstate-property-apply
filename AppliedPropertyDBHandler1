@@ -264,3 +264,7 @@ public ArrayList<AppliedPropertyDTO> getAllStaredProperties() {
     
     
 }
+
+//use this SQL query to join the tables and get the student who is interested in the property
+"select p.`id`, p.`landlord_id`, `name`, `address`, `city`, `pictures`,`price`,`description`, `location`, `rooms`, `bathrooms`"
+                + ",ifnull(s.property_id =p.id,0),t.tenant_id from property p inner join applied_properties t on p.id =t.property_id and p.landlord_id=? ORDER BY `p`.`id` ASC";
