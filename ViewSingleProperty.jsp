@@ -15,29 +15,25 @@
 
                     <!-- Agent Detail -->
                     <%AgencyDBHandler agencydb = new AgencyDBHandler();
-                        AgencyDAO agency = agencydb.getLandlordByID(proObj.getLandlord_id());
+                        AgencyDTO agency = agencydb.getAgencyByID(proObj.getAgency_id());
                     %>
-                    <div class="agent-widget">
-                        <div class="agent-title">
-                            <div class="agent-photo"><img src="<%= lord.getProfile_pic()%>" alt=""></div>
+                    <div class="">
+                        <div class="">
+                            <div class="agent-photo"><img src="<%= agency.getProfile_pic()%>" alt=""></div>
                             <div class="agent-details">
-                                <h4><a href="ViewLandlordProfile.jsp?id=<%=agency.getId()%>"><%= agency.getName()%></a></h4>
+                                <h4><a href="AgencyProfile.jsp?id=<%=agency.getId()%>"><%= agency.getName()%></a></h4>
                                     <%AppliedPropertyDBHandler adb = new AppliedPropertyDBHandler();%>
-                                <span><i class="lni-phone-handset"></i><%=agency.getContact()%></span>
+                                <span><i class=""></i><%=agency.getContact()%></span>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <%
-                            if (!adb.isALreadyApplied(new AppliedPropertyDTO(student_id, proObj.getId()))) {%>
-                        <button class="btn btn-theme full-width"  id="applybtn" onclick="applyPropertty(this)" data-target-applyid="<%=proObj.getId()%>" data-target-apply="0" >Interested</button>
+                            if (!adb.isALreadyApplied(new AppliedPropertyDTO(tenant_id, proObj.getId()))) {%>
+                        <button class="btn btn-theme"  id="applybtn" onclick="applyPropertty(this)" data-target-applyid="<%=proObj.getId()%>" data-target-apply="0" >Interested</button>
                         <%} else {%>
-                        <button class="btn btn-theme full-width"  id="applybtn" onclick="applyPropertty(this)"data-target-applyid="<%=proObj.getId()%>" data-target-apply="1" >Uninterested</button>
+                        <button class="btn btn-theme"  id="applybtn" onclick="applyPropertty(this)"data-target-applyid="<%=proObj.getId()%>" data-target-apply="1" >Uninterested</button>
                         <%}%>
-                    </div>
-
-
-
-                    
+                    </div>           
                               <%}%>
                             </div>
                                                
